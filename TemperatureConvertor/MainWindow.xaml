@@ -1,0 +1,29 @@
+﻿<Window x:Class="TemperatureConvertor.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TemperatureConvertor"        
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <StackPanel.Resources>
+                <local:Temperature x:Key="c_to_f"/>
+            </StackPanel.Resources>
+            <TextBox Height="20" Width="200" Margin="10" Text="{Binding TemperatureValue, Source={StaticResource c_to_f}}"/>
+            <Button Content="Convert to Farenhiet" Margin="10" Height="30" Width="200" Command="{Binding CelciusToFarenhietCommand, Source={StaticResource c_to_f}, UpdateSourceTrigger=PropertyChanged}"/>
+            <Label Margin="10" Content="{Binding ConvertedTemperatureValue,Source={StaticResource c_to_f}}"/>
+        </StackPanel>
+        <StackPanel>
+            <StackPanel.Resources>
+                <local:Temperature x:Key="f_to_c"/>
+            </StackPanel.Resources>
+            <StackPanel Orientation="Horizontal">
+                <TextBox Height="20" Width="200" Margin="10" Text="{Binding TemperatureValue, Source={StaticResource f_to_c}}"/>
+                <Button Content="Convert to Celcius" Margin="10" Height="30" Width="200" Command="{Binding FarenhietToCelciusCommand,Source={StaticResource f_to_c},UpdateSourceTrigger=PropertyChanged}"/>
+                <Label Margin="10" Content="{Binding ConvertedTemperatureValue, Source={StaticResource f_to_c}}"/>
+            </StackPanel>
+        </StackPanel>
+    </StackPanel>
+</Window>
